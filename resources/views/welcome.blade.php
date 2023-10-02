@@ -26,8 +26,8 @@
       </h1>
       <p class="mb-8 leading-relaxed">Bienvenido a mi portafolio personal aca encontraras todo acerca de mis conocimientos y trabajos losgrados a los largo de varios años de estudio autodidacta.</p>
       <div class="flex justify-center">
-        <button class="inline-flex text-white bg-gray-900 border-0 py-2 px-6 focus:outline-none hover:bg-gray-700 rounded text-lg">Enviar mensaje</button>
-        <button class="ml-4 inline-flex text-gray-100 bg-gray-900 border-0 py-2 px-6 focus:outline-none hover:bg-gray-700 rounded text-lg">Portafolio</button>
+        <a href="#contacto" class="inline-flex text-white bg-gray-900 border-0 py-2 px-6 focus:outline-none hover:bg-gray-700 rounded text-lg">Enviar mensaje</a>
+        <a href="#portafolio" class="ml-4 inline-flex text-gray-100 bg-gray-900 border-0 py-2 px-6 focus:outline-none hover:bg-gray-700 rounded text-lg">Portafolio</a>
       </div>
     </div>
     <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
