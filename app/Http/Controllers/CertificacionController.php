@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Quiensoy;
+use App\Models\Certificacion;
 use Illuminate\Http\Request;
 
-class QuiensoyController extends Controller
+class CertificacionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class QuiensoyController extends Controller
      */
     public function index()
     {
-        return view('admin.quiensoy.index');
+        return view('admin.certificaciones.index');
     }
 
     /**
@@ -41,10 +41,10 @@ class QuiensoyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Quiensoy  $quiensoy
+     * @param  \App\Models\Certificacion  $certificacion
      * @return \Illuminate\Http\Response
      */
-    public function show(Quiensoy $quiensoy)
+    public function show(Certificacion $certificacion)
     {
         //
     }
@@ -52,10 +52,10 @@ class QuiensoyController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Quiensoy  $quiensoy
+     * @param  \App\Models\Certificacion  $certificacion
      * @return \Illuminate\Http\Response
      */
-    public function edit(Quiensoy $quiensoy)
+    public function edit(Certificacion $certificacion)
     {
         //
     }
@@ -64,10 +64,10 @@ class QuiensoyController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Quiensoy  $quiensoy
+     * @param  \App\Models\Certificacion  $certificacion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Quiensoy $quiensoy)
+    public function update(Request $request, Certificacion $certificacion)
     {
         //
     }
@@ -75,10 +75,10 @@ class QuiensoyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Quiensoy  $quiensoy
+     * @param  \App\Models\Certificacion  $certificacion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Quiensoy $quiensoy)
+    public function destroy(Certificacion $certificacion)
     {
         //
     }

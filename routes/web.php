@@ -9,15 +9,31 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
+// Ruta para el home admin
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Ruta para quien soy en el admin
 
 Route::get('/Quiensoy', [App\Http\Controllers\QuiensoyController::class, 'index'])->name('Quiensoy');
 
-Route::get('/habilidades', [App\Http\Controllers\HabilidadesController::class, 'index'])->name('habilidades');
+// Portafolio y todas sus rutas
 
-Route::get('/certificaciones', [App\Http\Controllers\CertificacionesController::class, 'index'])->name('certificaciones');
+
+Route::get('/portafolio_admin', function () {
+    return view('admin.portafolio.admin');
+});
 
 Route::get('/portafolio', [App\Http\Controllers\PortafolioController::class, 'index'])->name('portafolio');
 
+Route::get('/categoria', [App\Http\Controllers\CategoriaController::class, 'index'])->name('categoria');
+
+Route::get('/habilidad', [App\Http\Controllers\HabilidadController::class, 'index'])->name('habilidad');
+
+Route::get('/certificacion', [App\Http\Controllers\CertificacionController::class, 'index'])->name('certificacion');
+
+
+// Ruta mensajes
 
 Route::get('/mensajes', [MensajesController::class, 'index']);

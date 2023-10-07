@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Portafolio;
 use Illuminate\Http\Request;
 
 class PortafolioController extends Controller
@@ -40,10 +41,10 @@ class PortafolioController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Portafolio  $portafolio
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Portafolio $portafolio)
     {
         //
     }
@@ -51,10 +52,10 @@ class PortafolioController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Portafolio  $portafolio
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Portafolio $portafolio)
     {
         //
     }
@@ -63,10 +64,10 @@ class PortafolioController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Portafolio  $portafolio
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Portafolio $portafolio)
     {
         //
     }
@@ -74,10 +75,10 @@ class PortafolioController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Portafolio  $portafolio
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Portafolio $portafolio)
     {
         //
     }
