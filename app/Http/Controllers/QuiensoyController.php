@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Quiensoy;
+use App\Models\Categoria;
+use App\Models\Habilidad;
+use Intervention\Image\Facades\Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class QuiensoyController extends Controller
 {
@@ -24,7 +28,7 @@ class QuiensoyController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.quiensoy.create');
     }
 
     /**
@@ -35,7 +39,28 @@ class QuiensoyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'nombre' => 'required',
+            'descripcion' => 'required',
+            'imagen_quiensoy' => 'required|image',
+         ]);
+
+         //Guardar la imagen
+         $ruta_imagen = $request['imagen_quiensoy']->store('quiensoy','public');
+
+         // Rezise a la imagen
+         $img = Image::make(public_path("storage/{$ruta_imagen}") )->fit(350,350);
+         $img->save();
+ 
+         
+         //Guardar en la BD
+         DB::table('quiensoys')->insert([
+            'nombre' => $data['nombre'],
+            'descripcion' => $data['descripcion'],
+            'imagen_quiensoy' => $ruta_imagen,
+        ]);
+
+        return redirect()->route('Quiensoy')->with('estado','La informacion se envio correctamente');
     }
 
     /**
