@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Certificacion;
 use Illuminate\Http\Request;
+use App\Models\Certificacion;
+use Illuminate\Support\Facades\DB;
+use Intervention\Image\Facades\Image;
+
 
 class CertificacionController extends Controller
 {
@@ -14,7 +17,9 @@ class CertificacionController extends Controller
      */
     public function index()
     {
-        return view('admin.certificaciones.index');
+        
+        $certificacion = Certificacion::all();
+        return view('admin.certificaciones.index')->with('certificacion',$certificacion);
     }
 
     /**
@@ -24,7 +29,7 @@ class CertificacionController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.certificaciones.create');
     }
 
     /**
@@ -35,7 +40,27 @@ class CertificacionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'nombre' => 'required',
+            'descripcion' => 'required',
+            'imagen_certificacion' => 'required|image',
+         ]);
+
+          //Guardar la imagen
+          $ruta_imagen = $request['imagen_certificacion']->store('certificacion','public');
+
+          // Rezise a la imagen
+          $img = Image::make(public_path("storage/{$ruta_imagen}") )->fit(350,350);
+          $img->save();
+         
+         //Guardar en la BD
+         DB::table('certificacions')->insert([
+            'nombre' => $data['nombre'],
+            'descripcion' => $data['descripcion'],
+            'imagen_certificacion' => $ruta_imagen,
+        ]);
+
+        return redirect()->route('certificacion')->with('estado','La informacion se envio correctamente');
     }
 
     /**
@@ -57,7 +82,7 @@ class CertificacionController extends Controller
      */
     public function edit(Certificacion $certificacion)
     {
-        //
+        return view('admin.certificaciones.edit',compact('certificacion'));
     }
 
     /**
@@ -69,7 +94,33 @@ class CertificacionController extends Controller
      */
     public function update(Request $request, Certificacion $certificacion)
     {
-        //
+         //Validacion
+         $data = $request->validate([
+            'nombre' => 'required',
+            'imagen_certificacion' => 'image',
+            'descripcion' => 'required',
+         ]);
+
+         $certificacion->nombre = $data['nombre'];
+         $certificacion->descripcion = $data['descripcion'];
+
+         //Si el usuario sube una imagen
+         if (request('imagen_certificacion')) {
+             //Guardar la imagen
+            $ruta_imagen = $request['imagen_certificacion']->store('certificacion','public');
+
+            // Rezise a la imagen
+            $img = Image::make(public_path("storage/{$ruta_imagen}") )->fit(800,600);
+            $img->save();
+
+            $certificacion->imagen_certificacion = $ruta_imagen;
+
+         }
+
+         $certificacion->save();
+
+         //Mensaje al usuario
+         return redirect()->route('certificacion')->with('estado','La informacion se Actualizo correctamente');
     }
 
     /**
@@ -80,6 +131,9 @@ class CertificacionController extends Controller
      */
     public function destroy(Certificacion $certificacion)
     {
-        //
+           //Eliminar la publicacion
+           $certificacion->delete();
+
+           return redirect()->route('certificacion')->with('estado','La informacion se a borrado correctamente');
     }
 }

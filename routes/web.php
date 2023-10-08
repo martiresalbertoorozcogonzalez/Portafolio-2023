@@ -29,7 +29,16 @@ Route::get('/portafolio_admin', function () {
     return view('admin.portafolio.admin');
 });
 
+
+// Ruta para el Portafolio y su CRUD
+
 Route::get('/portafolio', [App\Http\Controllers\PortafolioController::class, 'index'])->name('portafolio');
+Route::get('/portafolio/create', [App\Http\Controllers\PortafolioController::class, 'create'])->name('admin.portafolio.create');
+Route::post('/portafolio/store', [App\Http\Controllers\PortafolioController::class, 'store'])->name('admin.portafolio.store');
+Route::get('/portafolio/{portafolio}/edit', [App\Http\Controllers\PortafolioController::class, 'edit'])->name('portafolio.edit');
+Route::put('/portafolio/{portafolio}', [App\Http\Controllers\PortafolioController::class, 'update'])->name('admin.portafolio.update');
+Route::delete('/portafolio/{portafolio}', [App\Http\Controllers\PortafolioController::class, 'destroy'])->name('admin.portafolio.destroy');
+
 
 // Ruta para Categoria y su CRUD
 
@@ -50,9 +59,16 @@ Route::get('/habilidad/{habilidad}/edit', [App\Http\Controllers\HabilidadControl
 Route::put('/habilidad/{habilidad}', [App\Http\Controllers\HabilidadController::class, 'update'])->name('admin.habilidad.update');
 Route::delete('/habilidad/{habilidad}', [App\Http\Controllers\HabilidadController::class, 'destroy'])->name('admin.habilidad.destroy');
 
-
+// Ruta para certificacion y su CRUD
 
 Route::get('/certificacion', [App\Http\Controllers\CertificacionController::class, 'index'])->name('certificacion');
+Route::get('/certificacion/create', [App\Http\Controllers\CertificacionController::class, 'create'])->name('admin.certificacion.create');
+Route::post('/certificacion/store', [App\Http\Controllers\CertificacionController::class, 'store'])->name('admin.certificacion.store');
+Route::get('/certificacion/{certificacion}/edit', [App\Http\Controllers\CertificacionController::class, 'edit'])->name('certificacion.edit');
+Route::put('/certificacion/{certificacion}', [App\Http\Controllers\CertificacionController::class, 'update'])->name('admin.certificacion.update');
+Route::delete('/certificacion/{certificacion}', [App\Http\Controllers\CertificacionController::class, 'destroy'])->name('admin.certificacion.destroy');
+
+
 
 // Ruta mensajes
 
