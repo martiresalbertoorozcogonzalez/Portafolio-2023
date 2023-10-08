@@ -16,9 +16,15 @@ class QuiensoyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Quiensoy $quiensoy)
     {
-        return view('admin.quiensoy.index');
+
+        $quiensoy = Quiensoy::all(['id','nombre','descripcion','imagen_quiensoy']);
+
+
+        // dd($quiensoy);
+
+        return view('admin.quiensoy.index')->with('quiensoy',$quiensoy);
     }
 
     /**
@@ -82,7 +88,7 @@ class QuiensoyController extends Controller
      */
     public function edit(Quiensoy $quiensoy)
     {
-        //
+        return view('admin.quiensoy.edit',compact('quiensoy'));
     }
 
     /**
@@ -94,7 +100,35 @@ class QuiensoyController extends Controller
      */
     public function update(Request $request, Quiensoy $quiensoy)
     {
-        //
+                  //Validacion
+                  $data = $request->validate([
+                    'nombre' => 'required',
+                    'imagen_quiensoy' => 'image',
+                    'descripcion' => 'required',
+                 ]);
+
+                 $quiensoy->nombre = $data['nombre'];
+                 $quiensoy->descripcion = $data['descripcion'];
+
+                 //Si el usuario sube una imagen
+                 if (request('imagen_quiensoy')) {
+                     //Guardar la imagen
+                    $ruta_imagen = $request['imagen_quiensoy']->store('portafolio','public');
+
+                    // Rezise a la imagen
+                    $img = Image::make(public_path("storage/{$ruta_imagen}") )->fit(800,600);
+                    $img->save();
+
+                    $quiensoy->imagen_quiensoy = $ruta_imagen;
+
+                 }
+
+                 $quiensoy->save();
+
+                 //Mensaje al usuario
+                 return redirect()->route('Quiensoy')->with('estado','La informacion se Actualizo correctamente');
+
+
     }
 
     /**
@@ -105,6 +139,11 @@ class QuiensoyController extends Controller
      */
     public function destroy(Quiensoy $quiensoy)
     {
-        //
+        
+        //Eliminar la publicacion
+        $quiensoy->delete();
+
+        return redirect()->route('Quiensoy')->with('estado','La informacion se a borrado correctamente');
+
     }
 }

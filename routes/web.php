@@ -18,6 +18,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/Quiensoy', [App\Http\Controllers\QuiensoyController::class, 'index'])->name('Quiensoy');
 Route::get('/Quiensoy/create', [App\Http\Controllers\QuiensoyController::class, 'create'])->name('admin.quiensoy.create');
 Route::post('/Quiensoy/store', [App\Http\Controllers\QuiensoyController::class, 'store'])->name('admin.quiensoy.store');
+Route::get('/Quiensoy/{quiensoy}/edit', [App\Http\Controllers\QuiensoyController::class, 'edit'])->name('quiensoy.edit');
+Route::put('/Quiensoy/{quiensoy}', [App\Http\Controllers\QuiensoyController::class, 'update'])->name('admin.quiensoy.update');
+Route::delete('/Quiensoy/{quiensoy}', [App\Http\Controllers\QuiensoyController::class, 'destroy'])->name('admin.quiensoy.destroy');
+
+
 
 
 
