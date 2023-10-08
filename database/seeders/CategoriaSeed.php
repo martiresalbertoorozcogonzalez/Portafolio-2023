@@ -18,13 +18,11 @@ class CategoriaSeed extends Seeder
     {
         DB::table('categorias')->insert([
             'nombre' => 'Portafolio',
-            'slug' => Str::slug('Portafolio'),
             'descripcion' => 'Portafolio',
         ]);
 
         DB::table('categorias')->insert([
             'nombre' => 'Paginas informativas',
-            'slug' => Str::slug('Paginas informativas'),
             'descripcion' => 'Paginas informativas',
         ]);
       

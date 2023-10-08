@@ -26,7 +26,6 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->text('descripcion');
-            $table->string('slug');
             $table->timestamps();
         });
 
@@ -35,7 +34,6 @@ return new class extends Migration
             $table->string('nombre');
             $table->text('descripcion');
             $table->string('imagen_habilidad');
-            $table->string('slug');
             $table->timestamps();
         });
 
@@ -44,7 +42,6 @@ return new class extends Migration
             $table->string('nombre');
             $table->text('descripcion');
             $table->string('imagen_certificacion');
-            $table->string('slug');
             $table->timestamps();
         });
 
@@ -55,7 +52,6 @@ return new class extends Migration
             $table->string('nombre');
             $table->text('descripcion');
             $table->string('imagen_portafolio');
-            $table->string('slug');
 
             $table->foreignId('categoria')->constrained();
             $table->foreignId('habilidad')->constrained();

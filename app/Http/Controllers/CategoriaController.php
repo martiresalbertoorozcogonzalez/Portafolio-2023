@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategoriaController extends Controller
 {
@@ -14,7 +15,9 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        return view('admin.categoria.index');
+        $categoria = Categoria::all();
+        // dd($categoria);
+        return view('admin.categoria.index')->with('categoria',$categoria);
     }
 
     /**
@@ -24,7 +27,7 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.categoria.create');
     }
 
     /**
@@ -35,7 +38,18 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'nombre' => 'required',
+            'descripcion' => 'required',
+         ]);
+         
+         //Guardar en la BD
+         DB::table('categorias')->insert([
+            'nombre' => $data['nombre'],
+            'descripcion' => $data['descripcion'],
+        ]);
+
+        return redirect()->route('categoria')->with('estado','La informacion se envio correctamente');
     }
 
     /**
@@ -57,7 +71,7 @@ class CategoriaController extends Controller
      */
     public function edit(Categoria $categoria)
     {
-        //
+        return view('admin.categoria.edit',compact('categoria'));
     }
 
     /**
@@ -69,7 +83,20 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, Categoria $categoria)
     {
-        //
+         //Validacion
+         $data = $request->validate([
+            'nombre' => 'required',
+            'descripcion' => 'required',
+         ]);
+
+         $categoria->nombre = $data['nombre'];
+         $categoria->descripcion = $data['descripcion'];
+
+
+         $categoria->save();
+
+         //Mensaje al usuario
+         return redirect()->route('categoria')->with('estado','La informacion se Actualizo correctamente');
     }
 
     /**
@@ -80,6 +107,9 @@ class CategoriaController extends Controller
      */
     public function destroy(Categoria $categoria)
     {
-        //
+        //Eliminar la publicacion
+        $categoria->delete();
+
+        return redirect()->route('categoria')->with('estado','La informacion se a borrado correctamente');
     }
 }
