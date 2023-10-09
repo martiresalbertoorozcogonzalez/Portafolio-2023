@@ -36,7 +36,7 @@ Route::get('/portafolio', [App\Http\Controllers\PortafolioController::class, 'in
 Route::get('/portafolio/create', [App\Http\Controllers\PortafolioController::class, 'create'])->name('admin.portafolio.create');
 Route::post('/portafolio/store', [App\Http\Controllers\PortafolioController::class, 'store'])->name('admin.portafolio.store');
 Route::get('/portafolio/{portafolio}/edit', [App\Http\Controllers\PortafolioController::class, 'edit'])->name('portafolio.edit');
-Route::put('/portafolio/{portafolio}', [App\Http\Controllers\PortafolioController::class, 'update'])->name('admin.portafolio.update');
+Route::put('/portafolio/{portafolio}', [App\Http\Controllers\PortafolioController::class, 'update'])->name('portafolio.update');
 Route::delete('/portafolio/{portafolio}', [App\Http\Controllers\PortafolioController::class, 'destroy'])->name('admin.portafolio.destroy');
 
 

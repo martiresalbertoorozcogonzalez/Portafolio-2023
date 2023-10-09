@@ -45,16 +45,19 @@ return new class extends Migration
             $table->timestamps();
         });
 
-
         Schema::create('portafolios', function (Blueprint $table) {
             
             $table->id();
             $table->string('nombre');
             $table->text('descripcion');
             $table->string('imagen_portafolio');
-
-            $table->foreignId('categoria')->constrained();
-            $table->foreignId('habilidad')->constrained();
+                   
+            $table->foreignId('categoria_id')->constrained()->onDelete('cascade');
+            $table->bigInteger('habilidad_id')->unsigned();
+            
+            $table->foreign('habilidad_id')->references('id')->on('habilidads')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
 
             $table->timestamps();
 
