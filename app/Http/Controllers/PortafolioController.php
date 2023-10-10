@@ -57,7 +57,7 @@ class PortafolioController extends Controller
           $ruta_imagen = $request['imagen_portafolio']->store('portafolio','public');
 
           // Rezise a la imagen
-          $img = Image::make(public_path("storage/{$ruta_imagen}") )->fit(350,350);
+          $img = Image::make(public_path("storage/{$ruta_imagen}") )->fit(1203,503);
           $img->save();
          
          //Guardar en la BD

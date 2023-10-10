@@ -116,7 +116,7 @@ class QuiensoyController extends Controller
                     $ruta_imagen = $request['imagen_quiensoy']->store('portafolio','public');
 
                     // Rezise a la imagen
-                    $img = Image::make(public_path("storage/{$ruta_imagen}") )->fit(800,600);
+                    $img = Image::make(public_path("storage/{$ruta_imagen}") )->fit(900,900);
                     $img->save();
 
                     $quiensoy->imagen_quiensoy = $ruta_imagen;

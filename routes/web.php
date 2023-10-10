@@ -3,9 +3,15 @@
 use App\Http\Controllers\MensajesController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+// Ruta para la pagina de inicio welcome
+
+Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index']);
+
+// Rutas para el login
 
 Auth::routes();
 
