@@ -9,15 +9,34 @@ use Illuminate\Support\Facades\Route;
 
 // Ruta para la pagina de inicio welcome
 
-Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index']);
+Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index'])->name('welcome');
+
+
+// Rutas formulario de Contacto
+
+Route::post('/contacto/store', [App\Http\Controllers\ContactoController::class, 'store'])->name('contacto.store');
+Route::delete('/contacto/{contacto}', [App\Http\Controllers\ContactoController::class, 'destroy'])->name('admin.contacto.destroy');
+
 
 // Rutas para el login
 
 Auth::routes();
 
+
 // Ruta para el home admin
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Portafolio y todas sus rutas
+
+Route::get('/portafolio_admin', function () {
+    return view('admin.portafolio.admin');
+});
+
+// Ruta mensajes
+
+Route::get('/mensajes', [App\Http\Controllers\MensajesController::class, 'index'])->name('mensajes');
+
 
 // Ruta para quien soy en el admin
 
@@ -27,14 +46,6 @@ Route::post('/Quiensoy/store', [App\Http\Controllers\QuiensoyController::class, 
 Route::get('/Quiensoy/{quiensoy}/edit', [App\Http\Controllers\QuiensoyController::class, 'edit'])->name('quiensoy.edit');
 Route::put('/Quiensoy/{quiensoy}', [App\Http\Controllers\QuiensoyController::class, 'update'])->name('admin.quiensoy.update');
 Route::delete('/Quiensoy/{quiensoy}', [App\Http\Controllers\QuiensoyController::class, 'destroy'])->name('admin.quiensoy.destroy');
-
-
-// Portafolio y todas sus rutas
-
-Route::get('/portafolio_admin', function () {
-    return view('admin.portafolio.admin');
-});
-
 
 // Ruta para el Portafolio y su CRUD
 
@@ -75,7 +86,3 @@ Route::put('/certificacion/{certificacion}', [App\Http\Controllers\Certificacion
 Route::delete('/certificacion/{certificacion}', [App\Http\Controllers\CertificacionController::class, 'destroy'])->name('admin.certificacion.destroy');
 
 
-
-// Ruta mensajes
-
-Route::get('/mensajes', [MensajesController::class, 'index']);

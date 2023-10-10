@@ -19,7 +19,10 @@
                         Nombre
                     </th>
                     <th scope="col" class="px-6 py-5">
-                        Editar
+                        Email
+                    </th>
+                    <th scope="col" class="px-6 py-5">
+                        Mensaje
                     </th>
                     <th scope="col" class="px-6 py-5">
                         Eliminar
@@ -27,42 +30,33 @@
                 </tr>
             </thead>
             <tbody>
+
+                @foreach ($mensajes as $item)
+                    
+                
+
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Apple MacBook Pro 17"
+                        {{$item->name}}
                     </th>
-                    <td class="px-6 py-4">
-                        <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Editar</button>
-                    </td>
-                    <td class="px-6 py-4">
-                        <button type="button" class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Eliminar</button>
-                    </td>
-                    
-                </tr>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Microsoft Surface Pro
+                        {{$item->email}}
                     </th>
-                    <td class="px-6 py-4">
-                        <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Editar</button>
-                    </td>
-                    <td class="px-6 py-4">
-                        <button type="button" class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Eliminar</button>
-                    </td>
-                    
-                </tr>
-                <tr class="bg-white dark:bg-gray-800">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Magic Mouse 2
+                        {{$item->message}}
                     </th>
                     <td class="px-6 py-4">
-                        <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Editar</button>
-                    </td>
-                    <td class="px-6 py-4">
-                        <button type="button" class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Eliminar</button>
+                        <form action="{{ route('admin.contacto.destroy',$item->id ) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" value="Eliminar">
+                        </form
                     </td>
                     
                 </tr>
+
+                @endforeach
+
             </tbody>
         </table>
     </div>

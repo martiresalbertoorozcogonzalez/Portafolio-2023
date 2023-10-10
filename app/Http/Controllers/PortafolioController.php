@@ -141,7 +141,6 @@ class PortafolioController extends Controller
 
              $portafolio->save();
 
-             
              //Mensaje al usuario
 
              return redirect()->route('portafolio')->with('estado','La informacion se envio correctamente');
@@ -156,6 +155,9 @@ class PortafolioController extends Controller
      */
     public function destroy(Portafolio $portafolio)
     {
-        //
+         //Eliminar la publicacion
+         $portafolio->delete();
+
+         return redirect()->route('portafolio')->with('estado','La informacion se a borrado correctamente');
     }
 }
