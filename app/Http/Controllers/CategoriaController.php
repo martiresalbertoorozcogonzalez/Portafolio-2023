@@ -49,7 +49,7 @@ class CategoriaController extends Controller
             'descripcion' => $data['descripcion'],
         ]);
 
-        return redirect()->route('categoria')->with('estado','La informacion se envio correctamente');
+        return redirect()->route('categoria')->with('estado','La Categoria se ha creado correctamente !!');
     }
 
     /**
@@ -96,7 +96,7 @@ class CategoriaController extends Controller
          $categoria->save();
 
          //Mensaje al usuario
-         return redirect()->route('categoria')->with('estado','La informacion se Actualizo correctamente');
+         return redirect()->route('categoria')->with('estado','La Categoria se Actualizo correctamente');
     }
 
     /**
@@ -110,6 +110,6 @@ class CategoriaController extends Controller
         //Eliminar la publicacion
         $categoria->delete();
 
-        return redirect()->route('categoria')->with('estado','La informacion se a borrado correctamente');
+        return redirect()->route('categoria')->with('estado','La informacion se a borrado con exito');
     }
 }

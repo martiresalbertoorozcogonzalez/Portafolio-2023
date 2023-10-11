@@ -61,7 +61,7 @@ class HabilidadController extends Controller
             'imagen_habilidad' => $ruta_imagen,
         ]);
 
-        return redirect()->route('habilidad')->with('estado','La informacion se envio correctamente');
+        return redirect()->route('habilidad')->with('estado','La Habilidad se guardo correctamente');
     }
 
     /**
@@ -121,7 +121,7 @@ class HabilidadController extends Controller
          $habilidad->save();
 
          //Mensaje al usuario
-         return redirect()->route('habilidad')->with('estado','La informacion se Actualizo correctamente');
+         return redirect()->route('habilidad')->with('estado','La Habilidad se Actualizo correctamente');
     }
 
     /**
@@ -135,6 +135,6 @@ class HabilidadController extends Controller
          //Eliminar la publicacion
          $habilidad->delete();
 
-         return redirect()->route('habilidad')->with('estado','La informacion se a borrado correctamente');
+         return redirect()->route('habilidad')->with('estado','La Habilidad se a borro con exito');
     }
 }

@@ -60,7 +60,7 @@ class CertificacionController extends Controller
             'imagen_certificacion' => $ruta_imagen,
         ]);
 
-        return redirect()->route('certificacion')->with('estado','La informacion se envio correctamente');
+        return redirect()->route('certificacion')->with('estado','El Certificado se creo con exito');
     }
 
     /**
@@ -120,7 +120,7 @@ class CertificacionController extends Controller
          $certificacion->save();
 
          //Mensaje al usuario
-         return redirect()->route('certificacion')->with('estado','La informacion se Actualizo correctamente');
+         return redirect()->route('certificacion')->with('estado','El Certificado se actualizo correctamente');
     }
 
     /**
@@ -134,6 +134,6 @@ class CertificacionController extends Controller
            //Eliminar la publicacion
            $certificacion->delete();
 
-           return redirect()->route('certificacion')->with('estado','La informacion se a borrado correctamente');
+           return redirect()->route('certificacion')->with('estado','El Certifiacdo se a borrado correctamente');
     }
 }

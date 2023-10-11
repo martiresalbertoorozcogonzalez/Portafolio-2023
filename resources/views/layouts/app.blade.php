@@ -13,7 +13,7 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     
-    @yield('styles')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Scripts -->
     @vite('resources/css/app.css')
@@ -154,8 +154,21 @@
         </nav>
 
         <main class="py-4">
+            @if ($mensaje = Session::get('estado'))
+                <div class="my-8">
+                    {{-- <div class="text-white bg-gradient-to-r from-blue-600 to-red-600  focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-bold rounded-md text-xl px-5 py-2.5 text-center mr-2 mb-2">{{ session('estado') }}</div> --}}
+                    <script>
+                        Swal.fire(
+                            'Exito!',
+                            '{{$mensaje}}',
+                            'success'
+                            )
+                    </script>
+                </div>
+            @endif
             @yield('content')
         </main>
     </div>
+     
 </body>
 </html>
