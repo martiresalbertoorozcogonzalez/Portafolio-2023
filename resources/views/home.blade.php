@@ -19,6 +19,7 @@
               <path d="M23 21v-2a4 4 0 00-3-3.87m-4-12a4 4 0 010 7.75"></path>
             </svg>
             <p class="leading-relaxed title-font font-medium text-3xl text-gray-900">Quien soy</p>
+            <span class="inline-flex items-center rounded-xl bg-red-50 px-2 py-1 text-3xl font-bolt text-green-700 ring-4 ring-inset ring-green-600/60">{{ $quiensoy->count() }}</span>
           </div>
           </a>
         </div>
@@ -31,6 +32,7 @@
               <path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3zM3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z"></path>
             </svg>
             <p class="leading-relaxed title-font font-medium text-3xl text-gray-900">Portafolio</p>
+            <span class="inline-flex items-center rounded-xl bg-red-50 px-2 py-1 text-3xl font-bolt text-green-700 ring-4 ring-inset ring-green-600/60">{{ $portafolio->count() }} </span>
           </div>
           </a>
         </div>
@@ -42,8 +44,12 @@
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
             </svg>
             <p class="leading-relaxed title-font font-medium text-3xl text-gray-900">Mensajes</p>
+             
+             <span class="inline-flex items-center rounded-xl bg-red-50 px-2 py-1 text-3xl font-bolt text-red-700 ring-4 ring-inset ring-red-600/60">{{ $mensajes->count() }}</span>            
+            
           </div>
           </a>
+
         </div>
         
 

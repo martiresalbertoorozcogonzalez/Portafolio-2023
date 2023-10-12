@@ -11,13 +11,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index'])->name('welcome');
 
-
-// Rutas formulario de Contacto
-
-Route::post('/contacto/store', [App\Http\Controllers\ContactoController::class, 'store'])->name('contacto.store');
-Route::delete('/contacto/{contacto}', [App\Http\Controllers\ContactoController::class, 'destroy'])->name('admin.contacto.destroy');
-
-
 // Rutas para el login
 
 Auth::routes();
@@ -27,11 +20,15 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+// Rutas formulario de Contacto
+
+Route::post('/contacto/store', [App\Http\Controllers\ContactoController::class, 'store'])->name('contacto.store');
+Route::delete('/contacto/{contacto}', [App\Http\Controllers\ContactoController::class, 'destroy'])->name('admin.contacto.destroy');
+
+
 // Portafolio y todas sus rutas
 
-Route::get('/portafolio_admin', function () {
-    return view('admin.portafolio.admin');
-});
+Route::get('/portafolio_admin', [App\Http\Controllers\PortafolioAdminController::class, 'index'])->name('portafolio_admin');
 
 // Ruta mensajes
 

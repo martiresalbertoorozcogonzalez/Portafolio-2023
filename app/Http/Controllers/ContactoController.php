@@ -9,9 +9,12 @@ use Illuminate\Support\Facades\Mail;
 
 class ContactoController extends Controller
 {
+    // Metodo para guardar mensajes recibidos del formulario a la base de datos
+
     public function store(Contacto $contacto, Request $request)
     {
         //Validacion
+
          $mensaje = $request->validate([
             'name' => 'required',
             'email' => 'required|email',
@@ -24,13 +27,11 @@ class ContactoController extends Controller
 
         //  dd($request->all());;
 
-        $contacto->name = $mensaje['name'];
-        $contacto->email = $mensaje['email'];
-        $contacto->message = $mensaje['message'];
-
-        // dd($contacto);
-
-        $contacto->save();
+        Contacto::create([
+          'name' => $request->name,
+          'email' => $request->email,
+          'message' => $request->message,
+        ]);
 
         //Mensaje al usuario
 
@@ -39,12 +40,15 @@ class ContactoController extends Controller
     }
 
 
+    // Metodo para eliminar notificacion
+
     public function destroy(Contacto $contacto)
     {
+
         //Eliminar la publicacion
+
         $contacto->delete();
 
-        
         return redirect()->route('mensajes')->with('estado','La informacion se a borrado correctamente');   
     }
 }

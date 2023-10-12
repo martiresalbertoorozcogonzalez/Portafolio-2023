@@ -34,6 +34,7 @@
                 <path d="M20.88 18.09A5 5 0 0018 9h-1.26A8 8 0 103 16.29"></path>
               </svg>
               <p class="leading-relaxed title-font font-medium text-3xl text-gray-900">Categorias</p>
+              <span class="inline-flex items-center rounded-xl bg-red-50 px-2 py-1 text-3xl font-bolt text-green-700 ring-4 ring-inset ring-green-600/60">{{ $categorias->count() }}</span>
             </div>
            </a>
         </div>
@@ -46,6 +47,7 @@
                 <path d="M20.88 18.09A5 5 0 0018 9h-1.26A8 8 0 103 16.29"></path>
               </svg>
               <p class="leading-relaxed title-font font-medium text-3xl text-gray-900">Habilidades</p>
+              <span class="inline-flex items-center rounded-xl bg-red-50 px-2 py-1 text-3xl font-bolt text-green-700 ring-4 ring-inset ring-green-600/60">{{ $habilidades->count() }}</span>
             </div>
            </a>
         </div>
@@ -59,6 +61,7 @@
               <path d="M23 21v-2a4 4 0 00-3-3.87m-4-12a4 4 0 010 7.75"></path>
             </svg>
             <p class="leading-relaxed title-font font-medium text-3xl text-gray-900">Certificaciones</p>
+            <span class="inline-flex items-center rounded-xl bg-red-50 px-2 py-1 text-3xl font-bolt text-green-700 ring-4 ring-inset ring-green-600/60">{{ $certificaciones->count() }}</span>
           </div>
           </a>
         </div>
