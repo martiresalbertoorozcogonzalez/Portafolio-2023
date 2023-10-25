@@ -11,7 +11,8 @@
 
 </head>
 
-<body>
+<body id="app">
+
 
 {{--Navbar--}}
 
@@ -24,18 +25,22 @@
 {{-- Footer --}}
 @include('partials.footer')
 
-{{-- Script para la barra del menu --}}
-<script>
-    function openMenu() {
-      let menu = document.getElementById('menu');
+@yield('scrips')
 
-      if (menu.classList.contains('hidden')) {
-        menu.classList.remove('hidden')
-      }else {
-        menu.classList.add('hidden');
+{{-- Script para la barra del menu --}}
+  <script>
+      function openMenu() {
+        let menu = document.getElementById('menu');
+
+        if (menu.classList.contains('hidden')) {
+          menu.classList.remove('hidden')
+        }else {
+          menu.classList.add('hidden');
+        }
       }
-    }
-</script>
+  </script>
+
+
 
 </body>
 </html>

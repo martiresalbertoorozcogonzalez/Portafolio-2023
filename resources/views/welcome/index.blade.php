@@ -60,21 +60,38 @@
   {{-- Certificados --}}
   <section class="text-gray-600 body-font">
     <div class="container px-5 py-10 mx-auto">
+      
+      {{-- Titulo de la seccion Certificaciones --}}
       <div id="certificaciones" class="flex flex-wrap w-full mb-20 flex-col items-center text-center">
         <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Certificaciones</h1>
       </div>
+
       <div class="flex flex-wrap -m-4">
 
         @foreach ($certificaciones as $item)
             
-          <div class="xl:w-1/3 md:w-1/2 p-4">
+          <div class="show-modal xl:w-1/3 md:w-1/2 p-4" id="#updateUser{{ $item->id }}">
             <div class="border border-gray-200 p-6 rounded-lg">
               <img src="/storage/{{ $item->imagen_certificacion}}" alt="">
-              <h2 class="text-lg text-gray-900 font-medium title-font mb-2">{{$item->nombre}}</h2>
+
+              <div class="flex flex-row justify-between">
+                <h2 class="text-lg text-gray-900 font-medium title-font mb-2">{{$item->nombre}}</h2>
+                <button class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-white show-modal">Ver</button>   
+              </div>
+
             </div>
+
+            
           </div>
+
           
         @endforeach
+
+        <div id="app"> 
+          {{-- Modal --}}
+          <modal-componet></modal-componet>
+        </div>
+
 
       </div>
       <button class="flex mx-auto mt-5 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Ver mas</button>
@@ -93,12 +110,13 @@
       
         @foreach ($portafolio as $item)
 
-          <div class="p-4 md:w-1/3 sm:mb-0 mb-6">
+          <div class="p-4 md:w-1/3 sm:mb-0 mb-6  data-target="#portafolio{{ $item->id }}"">
             <div class="rounded-lg h-64 overflow-hidden">
               <img alt="content" class="object-cover object-center h-full w-full" src="/storage/{{ $item->imagen_portafolio}}">
             </div>
             <h2 class="text-xl font-medium title-font text-gray-900 mt-5 text-center">{{ $item->nombre }}</h2>
-            <p class="text-base leading-relaxed mt-2">{{ $item->descripcion }}</p>
+             <button class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-white show-modal">Ver</button>   
+
           </div>
 
         @endforeach
@@ -111,10 +129,75 @@
   </section>
 
   {{-- Contacto --}}
-  <section id="contacto" class="text-gray-600 body-font">
+
+
+  <!--
+  This example requires some changes to your config:
+  
+  ```
+  // tailwind.config.js
+  module.exports = {
+    // ...
+    plugins: [
+      // ...
+      require('@tailwindcss/forms'),
+    ],
+  }
+  ```
+-->
+
+
+
+<section>
+<div id="contacto" class="bg-white px-6 py-12 sm:py-32 lg:px-8">
+  <div class="mx-auto max-w-2xl text-center">
+    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Enviar mensaje</h2>
+  </div>
+  <form action="{{ route('contacto.store') }}" method="POST" enctype="multipart/form-data" class="mx-auto mt-16 max-w-xl sm:mt-20">
+    
+    @csrf
+
+
+    <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+       
+      <div class="sm:col-span-2">
+        <label for="name" class="block text-sm font-semibold leading-6 text-gray-900">Name</label>
+        <div class="mt-2.5">
+          <input type="text" name="name" id="name" autocomplete="name" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+        </div>
+      </div>
+
+
+      <div class="sm:col-span-2">
+        <label for="email" class="block text-sm font-semibold leading-6 text-gray-900">Email</label>
+        <div class="mt-2.5">
+          <input type="email" name="email" id="email" autocomplete="email" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+        </div>
+      </div>
+
+      <div class="sm:col-span-2">
+        <label for="message" class="block text-sm font-semibold leading-6 text-gray-900">Message</label>
+        <div class="mt-2.5">
+          <textarea name="message" id="message" rows="4" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="mt-10">
+      <button type="submit" class="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Enviar mensaje</button>
+    </div>
+  </form>
+</div>
+</section>
+
+
+
+
+  {{-- <section id="contacto" class="text-gray-600 body-font">
     <div class="container px-5 py-24 mx-auto">
       <div class="flex flex-col text-center w-full mb-12">
-        <h1 class="sm:text-3xl text-3xl font-bold title-font mb-4 text-gray-900">Contactame</h1>
+        <h1 class="sm:text-3xl text-3xl font-bold title-font mb-4 text-gray-900">Enviar mensaje</h1>
       </div>
       <div class="lg:w-1/2 md:w-2/3 mx-auto">
        
@@ -184,5 +267,10 @@
       </div>
     </div>
   </section>  
-    
+     --}}
+@endsection
+
+@section('scrips')
+
+
 @endsection

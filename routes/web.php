@@ -1,10 +1,11 @@
 <?php
 
 use App\Http\Controllers\MensajesController;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/', function () {
-//     return view('welcome');
+// DB::listen(function ($query) {
+//      dump($query->sql, $query->bindings);
 // });
 
 // Ruta para la pagina de inicio welcome
@@ -81,5 +82,6 @@ Route::post('/certificacion/store', [App\Http\Controllers\CertificacionControlle
 Route::get('/certificacion/{certificacion}/edit', [App\Http\Controllers\CertificacionController::class, 'edit'])->name('certificacion.edit');
 Route::put('/certificacion/{certificacion}', [App\Http\Controllers\CertificacionController::class, 'update'])->name('admin.certificacion.update');
 Route::delete('/certificacion/{certificacion}', [App\Http\Controllers\CertificacionController::class, 'destroy'])->name('admin.certificacion.destroy');
+
 
 
